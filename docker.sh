@@ -38,6 +38,8 @@ test() {
     else
         # If the container does not exist, run a new one
         echo "Running Docker image ${username}/${image}:${tag} and executing shell..."
+        echo "NOTE: If there is an error with the [[gpu]] capability, make sure to run nvidia container toolkit:"
+        echo "       https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html"
         docker run -it \
             --name ${name} \
             --gpus all \
@@ -54,6 +56,7 @@ test() {
             -e PULSE_SERVER \
             -p 8000:8000 \
             ${username}/${image}:${tag} bash
+
     fi
     # Attach to the running container
     docker exec -it ${name} bash
