@@ -11,7 +11,8 @@ RUN apt update && apt install -y git curl
 ENV READTHEDOCS=True
 
 # PufferLib
-RUN git clone https://github.com/pufferai/pufferlib --branch 3.0
+# RUN git clone https://github.com/pufferai/pufferlib --branch 3.0
+RUN git clone https://github.com/rlplays/pufferlib --branch puffer-mt-evallibtorch
 
 # Make CUDA available during build process for kernels
 ENV TORCH_CUDA_ARCH_LIST=Turing 
