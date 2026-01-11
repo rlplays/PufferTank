@@ -23,7 +23,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && uv venv --python 3.12 --prompt 🐡 venv \
     && . venv/bin/activate \
     && uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 \
-    && uv pip install jax[cuda12] \
+    && uv pip install jax[cuda12] pybind11 \
     && uv pip install -e pufferlib[train] --no-build-isolation
 
 # Must install after pufferlib (Docker quirk with TORCH_CUDA_ARCH)
