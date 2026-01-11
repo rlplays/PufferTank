@@ -23,7 +23,8 @@ build() {
     fi
     echo "Building Docker image ${username}/${image}:${tag} with Dockerfile ${dockerfile}..."
     #docker build ${username}/${image}:${tag} -f ${dockerfile} .
-    docker buildx build --build-arg NVIDIA_VISIBLE_DEVICES=all --file ${dockerfile} -t ${username}/${image}:${tag} .
+    # If you get an error, docker may cache stuff, so try docker rmi -f pufferai/puffertank:3.0 first
+    docker buildx build  --no-cache --build-arg NVIDIA_VISIBLE_DEVICES=all --file ${dockerfile} -t ${username}/${image}:${tag} .
 }
 
 # Function for testing Docker image
