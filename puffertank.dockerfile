@@ -20,7 +20,7 @@ ENV TORCH_CUDA_ARCH_LIST=Turing
 # PyTorch and Jax
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && . $HOME/.local/bin/env \
-    && uv venv --python 3.12 --prompt 🐡🖥️🐡 venv \
+    && uv venv --python 3.12 --prompt 🐡 venv \
     && . venv/bin/activate \
     && uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 \
     && uv pip install jax[cuda12] pybind11 ninja \
@@ -67,7 +67,7 @@ RUN chmod +x /root/entrypoint.sh
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 # Bashrc
-RUN echo "export PS1=$''" >> ~/.bashrc \
+RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;33m\]\$\[\e[0m\]🐡$'" >> ~/.bashrc \
  && echo "alias vim='/usr/bin/nvim'" >> ~/.bashrc \ 
  && echo "alias diff='diff --color --palette=':ad=36:de=31:ln=33''" >> ~/.bashrc \
  && echo "alias pip='uv pip'" >> ~/.bashrc \
