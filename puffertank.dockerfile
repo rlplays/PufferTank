@@ -20,7 +20,7 @@ ENV TORCH_CUDA_ARCH_LIST=Turing
 # PyTorch and Jax
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && . $HOME/.local/bin/env \
-    && uv venv --python 3.12 --prompt 🐡 venv \
+    && uv venv --python 3.12 --prompt (🐡 rlplays) venv \
     && . venv/bin/activate \
     && uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 \
     && uv pip install jax[cuda12] pybind11 \
