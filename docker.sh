@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Default values (override by providing -u -d -i -t -n flags)
-username="pufferai"  # replace with your Docker Hub username
-dockerfile=""  # Dockerfile to use
-image="puffertank"
+username="perumaal"  # replace with your Docker Hub username
+dockerfile="puffertank.dockerfile"  # Dockerfile to use
+image="peru-puff"
 tag="3.0"
-name="puffertank"
+name="peru-puff"
 
 # Function for building Docker image
 build() {

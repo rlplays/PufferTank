@@ -49,7 +49,7 @@ RUN git clone https://github.com/pufferai/carbs \
 # Neovim (btw)
 RUN . $HOME/.local/bin/env \
     && . venv/bin/activate \
-    && apt install -y ninja-build gettext cmake unzip curl 
+    && apt install -y ninja-build gettext cmake unzip curl tmux
 
 # Run on container startup
 COPY entrypoint.sh /root/entrypoint.sh
@@ -57,12 +57,22 @@ RUN chmod +x /root/entrypoint.sh
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 # Bashrc
-RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;33m\]\$\[\e[0m\]🐡$ '" >> ~/.bashrc \
- && echo "alias vim='/usr/bin/nvim'" >> ~/.bashrc \ 
+RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;33m\]\$\[\e[0m\] $ '" >> ~/.bashrc \
  && echo "alias diff='diff --color --palette=':ad=36:de=31:ln=33''" >> ~/.bashrc \
  && echo "alias pip='uv pip'" >> ~/.bashrc \
  && echo ". /puffertank/venv/bin/activate" >> ~/.bashrc \
  && echo "cd /puffertank/pufferlib" >> ~/.bashrc
 
+
+# tmux config
+RUN cat > /root/.tmux.conf <<'EOF'
+set -g mouse on
+# set -g status-left "[rlplays] "
+set-option -g default-shell /bin/bash
+set-option -g default-command /bin/bash
+set -g history-limit 3000000
+# bind -Tcopy-mode MouseDragEnd1Pane send -X copy-selection-no-clear
+EOF
+
 RUN apt clean
-CMD ["/bin/bash"]
+CMD ["/bin/bash", "-lc", "tmux new-session -A -s puffer"]
