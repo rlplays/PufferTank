@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Default values
+# Default values (override by providing -u -d -i -t -n flags)
 username="pufferai"  # replace with your Docker Hub username
 dockerfile=""  # Dockerfile to use
 image="puffertank"
@@ -44,7 +44,7 @@ test() {
         docker run -it \
             --name ${name} \
             --gpus all \
-	    --ipc host \
+	          --ipc host \
             -v /tmp/.X11-unix:/tmp/.X11-unix \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v /mnt/wslg:/mnt/wslg \
@@ -55,7 +55,7 @@ test() {
             -e NVIDIA_DRIVER_CAPABILITIES=all \
             -e XDG_RUNTIME_DIR \
             -e PULSE_SERVER \
-            -p 8000:8000 \
+            -p 8080:8000 \
             ${username}/${image}:${tag} bash
 
     fi
