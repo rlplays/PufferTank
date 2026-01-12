@@ -55,7 +55,7 @@ test() {
             -e NVIDIA_DRIVER_CAPABILITIES=all \
             -e XDG_RUNTIME_DIR \
             -e PULSE_SERVER \
-            -p 8080:8000 \
+            -p 8000:8000 \
             ${username}/${image}:${tag} bash
 
     fi
