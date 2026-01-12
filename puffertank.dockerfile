@@ -67,7 +67,7 @@ RUN chmod +x /root/entrypoint.sh
 ENTRYPOINT ["/root/entrypoint.sh"]
 
 # Bashrc
-RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;33m\]\$\[\e[0m\]🐡$'" >> ~/.bashrc \
+RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;33m\]\$\[\e[0m\]🐡$ '" >> ~/.bashrc \
  && echo "alias vim='/usr/bin/nvim'" >> ~/.bashrc \ 
  && echo "alias diff='diff --color --palette=':ad=36:de=31:ln=33''" >> ~/.bashrc \
  && echo "alias pip='uv pip'" >> ~/.bashrc \
