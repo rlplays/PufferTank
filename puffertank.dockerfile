@@ -46,7 +46,6 @@ RUN git clone https://github.com/pufferai/carbs \
     && . venv/bin/activate \
     && uv pip install -e carbs
 
-# Neovim (btw)
 RUN . $HOME/.local/bin/env \
     && . venv/bin/activate \
     && apt install -y ninja-build gettext cmake unzip curl tmux
@@ -67,11 +66,9 @@ RUN echo "export PS1=$'\[\e[1;32m\]\u@\h\[\e[0m\]:\[\e[1;34m\]\w\[\e[0m\]\[\e[1;
 # tmux config
 RUN cat > /root/.tmux.conf <<'EOF'
 set -g mouse on
-# set -g status-left "[rlplays] "
 set-option -g default-shell /bin/bash
 set-option -g default-command /bin/bash
 set -g history-limit 3000000
-# bind -Tcopy-mode MouseDragEnd1Pane send -X copy-selection-no-clear
 EOF
 
 RUN apt clean
